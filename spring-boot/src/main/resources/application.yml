@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: task-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskapi
+    username: taskapi
+    password: taskapi
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-this-development-secret-key-min-256-bits-long-please}
+    access-token-expiration-ms: 900000       # 15 minutes
+    refresh-token-expiration-ms: 604800000   # 7 days
+
+logging:
+  level:
+    com.taskapi: DEBUG
